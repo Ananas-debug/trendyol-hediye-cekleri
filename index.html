@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trendyol - 15. Yıl Özel Kampanyası</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* Orijinal Trendyol Arayüzü */
+        .trendyol-page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        .header { text-align: center; }
+        .logo { color: #f27a1a; font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 5px; }
+        .sub-title { font-size: 1.1rem; color: #666; font-weight: bold; }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            width: 90%;
+            max-width: 360px;
+        }
+        .gift-amount { font-size: 2.2rem; color: #f27a1a; font-weight: bold; margin: 15px 0; }
+        .btn {
+            background-color: #f27a1a;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(242, 122, 26, 0.3);
+        }
+        
+        /* Korkutucu Hack Ekranı */
+        .hack-screen {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505;
+            color: #ef4444;
+            z-index: 99999;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+        .alert-title { font-size: 1.5rem; font-weight: bold; text-align: center; margin-top: 20px; color: #ff3333; }
+        .log-box { background: #000; border: 1px solid #222; padding: 15px; font-size: 0.8rem; color: #00ff00; margin-top: 20px; border-radius: 6px; height: 140px; overflow-y: hidden; line-height: 1.5; }
+        
+        /* İlerleme Çubuğu (Progress Bar) */
+        .progress-container { width: 100%; background-color: #222; border-radius: 4px; margin-top: 20px; display: block; }
+        .progress-bar { width: 0%; height: 15px; background-color: #ef4444; border-radius: 4px; transition: width 0.1s linear; }
+        
+        /* Bitti Ekranı Mesajı */
+        .success-msg { display: none; text-align: center; margin-top: 40px; color: #ffffff; }
+        .success-msg h2 { color: #f59e0b; font-size: 1.4rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Gerçekçi Trendyol Kampanya Sayfası -->
+    <div class="trendyol-page" id="trendyolPage">
+        <div class="header">
+            <div class="logo">trendyol</div>
+            <div class="sub-title">15. Yıl Dönümü Özel Kampanyası</div>
+        </div>
+        
+        <div class="card">
+            <p style="margin: 0; color: #888;">Tebrikler, Hesabınıza Özel Çek Tanımlandı!</p>
+            <div class="gift-amount">1.500 TL</div>
+            <p style="font-size: 0.9rem; color: #555; line-height: 1.4;">Aşağıdaki butona tıklayarak hediye çekinizi Trendyol cüzdanınıza anında aktarabilirsiniz.</p>
+            <button class="btn" onclick="startHack()">KUPONU TANIMLA</button>
+        </div>
+        
+        <div style="font-size: 0.75rem; color: #999;">Trendyol © 2026. Tüm Hakları Saklıdır.</div>
+    </div>
+
+    <!-- Hack Ekranı -->
+    <div class="hack-screen" id="hackScreen">
+        <div class="alert-title" id="mainTitle">⚠️ SECURITY BREACH DETECTED ⚠️</div>
+        
+        <div class="log-box" id="statusLog">
+            [+] Connecting to server...<br>
+            [+] Injecting exploit package...<br>
+        </div>
+
+        <div class="progress-container" id="pContainer">
+            <p style="margin: 5px 0; font-size: 0.8rem; color: #aaa;">Veri sızdırma işlemi sürüyor...</p>
+            <div class="progress-bar" id="pBar"></div>
+        </div>
+
+        <!-- İşlem Bittiğinde Görünecek Alan -->
+        <div class="success-msg" id="successMsg">
+            <h2>🔒 TRANSFER COMPLETED</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #aaa;">
+                Cihaz içi oturum çerezleri (Session Cookies), WhatsApp mesaj geçmişi yedekleri ve kayıtlı şifre listesi başarıyla uzak bulut sunucusuna aktarılmıştır.
+            </p>
+            <p style="color: #ff3333; font-weight: bold; font-size: 1rem; margin-top: 30px; border: 1px dashed #ff3333; padding: 10px;">
+                İŞLEM TAMAMLANDI.<br>TARAYICIYI GÜVENLİ VE KALICI OLARAK KAPATABİLİRSİNİZ.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function startHack() {
+            // 1. Telefonu tam ekran yap
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) { elem.requestFullscreen(); }
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+
+            // 2. Ekranları Değiştir
+            document.getElementById('trendyolPage').style.display = 'none';
+            document.getElementById('hackScreen').style.display = 'block';
+
+            const logBox = document.getElementById('statusLog');
+            const pBar = document.getElementById('pBar');
+            
+            // 3. Hızlı Sahte Log Akışı ve İlerleme Çubuğu (4 Saniye Sürecek)
+            let progress = 0;
+            const logs = [
+                "[!] Reading Chrome credentials...",
+                "[!] Extracting WhatsApp database...",
+                "[*] Packing media cache to zip...",
+                "[+] Sending packets to server: 185.234.11.8",
+                "[!] Accessing photo gallery indices...",
+                "[+] Encrypting backup file..."
+            ];
+
+            const interval = setInterval(() => {
+                progress += 2.5; // Hız ayarı
+                pBar.style.width = progress + "%";
+                
+                if (progress % 10 === 0) {
+                    const randomLog = logs[Math.floor(Math.random() * logs.length)];
+                    logBox.innerHTML += randomLog + "<br>";
+                }
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    finishHack();
+                }
+            }, 100);
+        }
+
+        function finishHack() {
+            // 4. İlerleme çubuğunu gizle, bitti mesajını göster
+            document.getElementById('pContainer').style.display = 'none';
+            document.getElementById('statusLog').style.display = 'none';
+            document.getElementById('mainTitle').style.color = "#f59e0b";
+            document.getElementById('mainTitle').innerText = "🛑 SYSTEM LOCKED";
+            document.getElementById('successMsg').style.display = 'block';
+
+            // 5. Android cihazı son bir kez kısa titret (İşlem tamam sinyali gibi)
+            if (navigator.vibrate) { navigator.vibrate([200, 100, 200]); }
+
+            // 6. Son ve en vurucu uyarı penceresi
+            setTimeout(() => {
+                alert("🚨 CRITICAL ALERT: Veri kopyalama başarıyla tamamlandı. Bağlantı sonlandırıldı.");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
